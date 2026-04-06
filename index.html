@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Замовлення квитків</title>
+</head>
+<body>
+    <h1>Доступні заходи</h1>
+    <div style="display: flex; gap: 20px;">
+        {% for event in events %}
+        <div style="border: 1px solid #ccc; padding: 15px; border-radius: 10px;">
+            <h3>{{ event.title }}</h3>
+            <p>📍 Місто: {{ event.location }}</p>
+            <p>💰 Ціна: <b>{{ event.price }} грн</b></p>
+            
+            <form action="{{ url_for('buy_ticket', event_id=event.id) }}" method="POST">
+                <button type="submit" style="background-color: green; color: white; cursor: pointer;">
+                    Купити квиток
+                </button>
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
